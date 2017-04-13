@@ -29,6 +29,6 @@ Page({
       })
     })
     //把数据写进缓存
-    //that.writeStorage()
+    that.writeStorage()
   }
 })
