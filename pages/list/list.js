@@ -1,6 +1,6 @@
 Page({
   data: {
-    list: ''
+    list: {}
   },
   //加载事件
   onLoad: function() {
@@ -14,7 +14,6 @@ Page({
         })
       }
     })
-    this.showStorage()
   },
   onShow: function() {
     this.onLoad()
@@ -28,14 +27,17 @@ Page({
       }
     })
   },
+  //Debug Tool 查看 order ID
+  showid: function(order){
+    console.log(order.target.id);
+  },
   //事件处理
   onTap: function(order) {
     var id = order.target.id
+    var link = "../info/info?id=" + id
     wx.navigateTo({
-      url: './'
+      url: link
     })
-    console.log(id)
-    console.log(this.data.list["id"])
   },
   writeStorage: function(){
     try {
@@ -47,7 +49,7 @@ Page({
   deleteOrder: function(e){
     var dataSet = e.target.dataset;
     var Index = dataSet.index;
-    this.data.list.splice(Index,1);
+    delete this.data.list[Index]
     //同步缓存
     this.writeStorage()
     //重新渲染页面

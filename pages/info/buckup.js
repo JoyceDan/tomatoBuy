@@ -1,25 +1,37 @@
 var util = require('../../utils/util.js');
+function order(id, name, remark, date){
+  this.id = id;
+  this.name = name;
+  this.remark = remark;
+  this.date = date;
+  this.newName = rename;
+  this.newRemark = reremark;
+};
+function rename(name){
+  this.name = name
+};
+function reremark(remark){
+  this.remark = remark
+};
 Page({
   data: {
-    list: {}
+    list: '',
+    id: ''
   },
-  onLoad: function() {
+  onLoad: function(goodies) {
     //从缓存中读取数据
     var that = this
     wx.getStorage({
       key: 'list',
       success: function(res) {
         that.setData({
-          list: res.data,
-          key: Date.now(),
-          newOrder: new util.order(Date.now(), '', '', util.formatTime(new Date)),
-          placeholder: ''
+          list: res.data
         })
       }
     })
-  },
-  onShow: function() {
-    this.onLoad()
+    that.setData({
+      id: goodies.id
+    })
   },
   //Debug Tool 查看storage
   showStorage: function() {
@@ -38,16 +50,13 @@ Page({
     }
   },
   addOrder: function(){
-    //var key = Date.now()
-    //var newOrder = new order(Date.now(), this.data.name, this.data.remark, util.formatTime(new Date));
+    var key = this.data.id
+    //var newOrder = new order(key, this.data.name, this.data.remark, util.formatTime(new Date));
     //this.data.list[key] = newOrder
-    if (this.data.newOrder.name == "") {
-      wx.showToast({
-        title: "订单名不能为空"
-      });
-      return false;
-    }
-    this.data.list[this.data.key] = this.data.newOrder;
+    var newOrder = this.data.list[key]
+    newOrder["name"] = this.data.name
+    newOrder["remark"] = this.data.remark
+    newOrder["date"] = util.formatTime(new Date)
     //同步缓存
     this.writeStorage()
     this.setData({
@@ -58,15 +67,13 @@ Page({
     });
   },
   bindRemark: function(remark) {
-    this.data.newOrder.newRemark(remark.detail.value)
-    //this.setData({
-    //  remark: remark.detail.value
-    //});
+    this.setData({
+      remark: remark.detail.value
+    });
   },
   bindName: function(name) {
-    this.data.newOrder.newName(name.detail.value)
-    //this.setData({
-    //  name: name.detail.value
-    //});
+    this.setData({
+      name: name.detail.value
+    });
   }
 })

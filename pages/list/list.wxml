@@ -9,7 +9,7 @@
               <view id="{{item.id}}" class="item-text"  bindtap="onTap">{{item.name}}</view>
               <image class="item-img" src="../../img/trash.png" bindtap="modelTap" data-index="{{index}}"></image>
             </view>
-            <view class="item-date">{{item.date}}</view>
+            <view class="item-date">Last Change: {{item.date}}</view>
           </view>
 
       </block>
