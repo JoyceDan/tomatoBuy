@@ -28,7 +28,7 @@ Page({
         userInfo: userInfo
       })
     })
-    //把数据写进缓存
-    //that.writeStorage()
+    // 把数据写进缓存
+    // that.writeStorage()
   }
 })
