@@ -4,7 +4,7 @@ var app = getApp()
 Page({
   //事件处理函数
   data: {
-    list: []
+    list: {}
   },
   bindViewTap: function() {
     wx.switchTab({

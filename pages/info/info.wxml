@@ -5,7 +5,7 @@
         <view class="input-cells_title">订单名</view>
         <view class="input-cells input-cells_after-title">
           <view class="input-cell input-cell_input" id="order_name">
-            <input class="input"  maxlength="10" bindinput="bindName" auto-focus value="{{placeholder}}"/>
+            <input class="input"  maxlength="10" bindinput="bindName" auto-focus value="{{list[id].name}}"/>
           </view>
         </view>
       </view>
@@ -14,11 +14,11 @@
         <view class="input-cells_title">备注</view>
         <view class="input-cells input-cells_after-title">
           <view class="textarea-wrp" id="order_remark">
-            <textarea class="input" bindinput="bindRemark" auto-height value="{{placeholder}}"/>
+            <textarea class="input" bindinput="bindRemark" auto-height  value="{{list[id].remark}}"/>
           </view>
         </view>
       </view>
 
-      <button bindtap="addOrder" class="btn">添加</button>
+      <button bindtap="saveOrder" class="btn">保存</button>
     </view>
 </view>
