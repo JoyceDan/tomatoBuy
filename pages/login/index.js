@@ -20,6 +20,10 @@ Page({
   },
   onLoad: function () {
     console.log('onLoad')
+    //自动跳转到 list 页面
+    wx.switchTab({
+      url: '../list/list'
+    })
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
